@@ -2,9 +2,6 @@ package dev.sugaroflead.dropgame_scoreboard.service;
 
 import java.util.Optional;
 
-import javax.swing.text.html.Option;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dev.sugaroflead.dropgame_scoreboard.data.NamePasshashCompositeKey;
@@ -15,7 +12,6 @@ import dev.sugaroflead.dropgame_scoreboard.repository.UserRepository;
 public class UserService {
     private final UserRepository userRepository;
 
-    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
