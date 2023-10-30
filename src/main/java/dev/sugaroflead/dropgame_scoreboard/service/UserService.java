@@ -2,6 +2,8 @@ package dev.sugaroflead.dropgame_scoreboard.service;
 
 import java.util.Optional;
 
+import javax.swing.text.html.Option;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +29,9 @@ public class UserService {
         npck.setPassHash(passhash);
         npck.setUserName(username);
         return userRepository.findById(npck);
+    }
+
+    public Boolean userNameExists(String username) {
+        return this.userRepository.getUserName(username).isPresent();
     }
 }

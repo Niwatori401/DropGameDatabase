@@ -16,7 +16,7 @@ import lombok.Data;
 @EntityListeners(AuditingEntityListener.class)
 public class Score {
     @EmbeddedId
-    private IdDateCompositeKey userId;
+    private UsernameDateCompositeKey userId;
     private String ipHash;
     private Integer score;
 

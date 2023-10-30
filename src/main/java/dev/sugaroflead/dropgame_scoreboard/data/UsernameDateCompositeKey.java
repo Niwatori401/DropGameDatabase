@@ -8,8 +8,8 @@ import lombok.Data;
 
 @Embeddable
 @Data
-public class IdDateCompositeKey implements Serializable {
-    private Integer userId;
+public class UsernameDateCompositeKey implements Serializable {
+    private String userName;
 
     private LocalDateTime createdDate;
 }

@@ -21,12 +21,7 @@ public class UserController {
     
     /*
      * Expects a POST request like this:
-     * curl -X POST -H "Content-Type: application/json" -d "{
-     * namePassHash: {
-     *  userName: "John",
-     *  passHash: "AB431D"
-     *  }
-     * }"
+     * curl -X POST -H "Content-Type: application/json" -d '{"namePassHash": {"userName": "John Doe", "passHash": "123456"}}' http://localhost:8080/user/createUser
      */
     @PostMapping("/createUser")
     public User createUser(@RequestBody User user) {
