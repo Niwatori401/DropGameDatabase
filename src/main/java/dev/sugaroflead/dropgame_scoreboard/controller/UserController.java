@@ -1,5 +1,7 @@
 package dev.sugaroflead.dropgame_scoreboard.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.sugaroflead.dropgame_scoreboard.data.User;
+import dev.sugaroflead.dropgame_scoreboard.data.UserWithRank;
 import dev.sugaroflead.dropgame_scoreboard.service.UserService;
 
 @RestController
@@ -39,4 +42,16 @@ public class UserController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
     
+    @GetMapping("getLeaderboard/{n}/{m}")
+    public ResponseEntity<List<UserWithRank>> getN_UsersStartingFrom_M(@PathVariable Integer n, @PathVariable Integer m) {
+        
+        List<UserWithRank> users = userService.getN_UsersStartingFrom_M(n, m);
+        
+        if (users == null || users.size() == 0) {
+            return ResponseEntity.badRequest().build();
+        }
+        else {
+            return ResponseEntity.ok().body(users);
+        }
+    }
 }
