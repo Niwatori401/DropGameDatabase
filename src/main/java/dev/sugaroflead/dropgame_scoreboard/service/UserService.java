@@ -57,4 +57,25 @@ public class UserService {
 
         return userWithRanks;
     }
+
+    public UserWithRank getUserWithRankByUsername(String userName) {
+        List<Object[]> dataCollection = this.userRepository.getUserWithRankByUsername(userName);
+        if (dataCollection == null || dataCollection.size() == 0)
+            return null;
+
+        Object[] data = dataCollection.get(0);
+
+        UserWithRank u = new UserWithRank();
+        NamePasshashCompositeKey nph = new NamePasshashCompositeKey();
+        
+        u.setRank(((Long) data[0]).intValue());
+        nph.setUserName((String) data[1]);
+        nph.setPassHash((String) data[2]);
+        u.setNamePassHash(nph);
+        u.setTopScore((Integer) data[3]);
+        u.setCreatedDate(((Timestamp) data[4]).toInstant().atZone(ZoneId.of("UTC")).toLocalDateTime());
+        u.setLastModifiedDate(((Timestamp) data[5]).toInstant().atZone(ZoneId.of("UTC")).toLocalDateTime());
+            
+        return u;
+    }
 }

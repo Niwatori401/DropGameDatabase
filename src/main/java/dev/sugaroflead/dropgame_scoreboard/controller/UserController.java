@@ -54,4 +54,13 @@ public class UserController {
             return ResponseEntity.ok().body(users);
         }
     }
+
+    @GetMapping("getUser/{userName}/rank") 
+    public ResponseEntity<UserWithRank> getUserWithRankByUsername(@PathVariable String userName) {
+        UserWithRank user = this.userService.getUserWithRankByUsername(userName);
+        if (user == null)
+            return ResponseEntity.badRequest().build();
+        
+        return ResponseEntity.ok().body(user);
+    }
 }
