@@ -1,5 +1,6 @@
 package dev.sugaroflead.dropgame_scoreboard.controller;
 
+import java.security.MessageDigest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.sugaroflead.dropgame_scoreboard.data.Score;
+import dev.sugaroflead.dropgame_scoreboard.data.ScoreWithValidation;
 import dev.sugaroflead.dropgame_scoreboard.service.ScoreService;
 import dev.sugaroflead.dropgame_scoreboard.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/score")
@@ -32,20 +35,50 @@ public class ScoreController {
 
     /*
      * Example POST:
-     * curl -X POST -H "Content-Type: application/json" -d '{"userId": {"userName":"John Doe"}, "ipHash":"123AED", "score":123}' localhost:8080/score/newScore
+     * curl -X POST -H "Content-Type: application/json" -d '{"passhash":"FWADD", "userId": {"userName":"John Doe"}, "score":123}' localhost:8080/score/newScore
      */
     @PostMapping("/newScore")
-    public ResponseEntity<Score> addNewScore(@RequestBody Score score) {
+    public ResponseEntity<Score> addNewScore(@RequestBody ScoreWithValidation score, HttpServletRequest request) {
 
+        
         if (!userService.userNameExists(score.getUserId().getUserName())) {
             return ResponseEntity.badRequest().build();
         }
+        if (this.userService.getUserByUserNamePasshash(score.getUserId().getUserName(), score.getPasshash()).isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        Score newScore = new Score();
+        newScore.setIpHash(hashIpAddress(extractClientIp(request)));
+        newScore.setScore(score.getScore());
+        newScore.setUserId(score.getUserId());
 
-        Score s = scoreService.saveScore(score);
+        Score s = scoreService.saveScore(newScore);
 
         return ResponseEntity.created(null).body(s);
     }
 
+    private String extractClientIp(HttpServletRequest request) {
+        String remoteAddr = request.getHeader("X-Forwarded-For");
+        if (remoteAddr == null || remoteAddr.isEmpty()) {
+            remoteAddr = request.getRemoteAddr();
+        }
+        return remoteAddr;
+    }
+
+    private String hashIpAddress(String ipAddress) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hashedBytes = digest.digest(ipAddress.getBytes("UTF-8"));
+            
+            StringBuilder stringBuffer = new StringBuilder();
+            for (byte b : hashedBytes) {
+                stringBuffer.append(String.format("%02x", b));
+            }
+            return stringBuffer.toString();
+        } catch (Exception e) {
+            throw new RuntimeException("Could not hash IP address", e);
+        }
+    }
 
     /*
      * Example GET:

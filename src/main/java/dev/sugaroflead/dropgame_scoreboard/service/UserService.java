@@ -78,4 +78,8 @@ public class UserService {
             
         return u;
     }
+
+    public Integer getUserCount() {
+        return this.userRepository.getUserCount();
+    }
 }

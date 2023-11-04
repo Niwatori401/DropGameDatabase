@@ -21,4 +21,6 @@ public interface UserRepository extends CrudRepository<User, NamePasshashComposi
     @Query(value="WITH ORDERED_SCORES AS (SELECT DISTINCT TOP_SCORE FROM USERS ORDER BY TOP_SCORE DESC), ORDERED_RANKS AS (SELECT ROW_NUMBER() OVER (ORDER BY TOP_SCORE DESC) AS RANK, TOP_SCORE FROM ORDERED_SCORES) SELECT RANK, USER_NAME, PASS_HASH, O.TOP_SCORE, CREATED_DATE, LAST_MODIFIED_DATE FROM USERS U LEFT JOIN ORDERED_RANKS O ON U.TOP_SCORE = O.TOP_SCORE WHERE U.USER_NAME = :userName", nativeQuery = true)
     public List<Object[]> getUserWithRankByUsername(@Param("userName") String userName);
 
+    @Query(value="SELECT COUNT(*) FROM USERS", nativeQuery = true)
+    public Integer getUserCount();
 }

@@ -19,6 +19,7 @@ import lombok.Data;
 public class User {
     @EmbeddedId
     private NamePasshashCompositeKey namePassHash;
+    
     private Integer topScore = 0;
 
     @CreatedDate

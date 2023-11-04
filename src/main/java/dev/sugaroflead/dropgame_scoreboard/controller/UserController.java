@@ -36,10 +36,6 @@ public class UserController {
     @PostMapping("/createUser")
     public ResponseEntity<UserNameSubmitResponse> createUser(@RequestBody User user) {
         UserNameSubmitResponse response = new UserNameSubmitResponse();
-
-        if (user.getTopScore() != null && user.getTopScore() > 0) {
-            return ResponseEntity.badRequest().body(response);
-        }
         
         if (this.userService.userNameExists(user.getNamePassHash().getUserName())) {
             Optional<User> existingUser = this.userService.getUserByUserNamePasshash(user.getNamePassHash().getUserName(), user.getNamePassHash().getPassHash());
@@ -97,6 +93,11 @@ public class UserController {
 
             return ResponseEntity.ok().body(users);
         }
+    }
+
+    @GetMapping("getUserCount")
+    public ResponseEntity<Integer> getUserCount() {
+        return ResponseEntity.ok().body(this.userService.getUserCount());
     }
 
 
