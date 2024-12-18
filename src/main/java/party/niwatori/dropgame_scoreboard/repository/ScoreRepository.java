@@ -1,7 +1,7 @@
-package dev.sugaroflead.dropgame_scoreboard.repository;
+package party.niwatori.dropgame_scoreboard.repository;
 
-import dev.sugaroflead.dropgame_scoreboard.data.Score;
-import dev.sugaroflead.dropgame_scoreboard.data.UsernameDateCompositeKey;
+import party.niwatori.dropgame_scoreboard.data.Score;
+import party.niwatori.dropgame_scoreboard.data.UsernameDateCompositeKey;
 
 import java.util.List;
 

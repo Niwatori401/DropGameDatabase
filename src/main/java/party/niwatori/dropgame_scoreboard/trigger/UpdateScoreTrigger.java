@@ -1,4 +1,4 @@
-package dev.sugaroflead.dropgame_scoreboard.trigger;
+package party.niwatori.dropgame_scoreboard.trigger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

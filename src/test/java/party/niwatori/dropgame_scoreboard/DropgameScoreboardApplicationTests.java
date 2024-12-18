@@ -1,4 +1,4 @@
-package dev.sugaroflead.dropgame_scoreboard;
+package party.niwatori.dropgame_scoreboard;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

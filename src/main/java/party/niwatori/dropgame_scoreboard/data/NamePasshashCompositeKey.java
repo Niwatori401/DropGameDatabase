@@ -1,4 +1,4 @@
-package dev.sugaroflead.dropgame_scoreboard.data;
+package party.niwatori.dropgame_scoreboard.data;
 
 import java.io.Serializable;
 

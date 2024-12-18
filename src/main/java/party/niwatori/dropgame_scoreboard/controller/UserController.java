@@ -1,4 +1,4 @@
-package dev.sugaroflead.dropgame_scoreboard.controller;
+package party.niwatori.dropgame_scoreboard.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.sugaroflead.dropgame_scoreboard.data.NamePasshashCompositeKey;
-import dev.sugaroflead.dropgame_scoreboard.data.User;
-import dev.sugaroflead.dropgame_scoreboard.data.UserNameSubmitResponse;
-import dev.sugaroflead.dropgame_scoreboard.data.UserWithRank;
-import dev.sugaroflead.dropgame_scoreboard.service.UserService;
+import party.niwatori.dropgame_scoreboard.data.NamePasshashCompositeKey;
+import party.niwatori.dropgame_scoreboard.data.User;
+import party.niwatori.dropgame_scoreboard.data.UserNameSubmitResponse;
+import party.niwatori.dropgame_scoreboard.data.UserWithRank;
+import party.niwatori.dropgame_scoreboard.service.UserService;
 
 @RestController
 @RequestMapping("/user")

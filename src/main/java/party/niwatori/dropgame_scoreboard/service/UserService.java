@@ -1,4 +1,4 @@
-package dev.sugaroflead.dropgame_scoreboard.service;
+package party.niwatori.dropgame_scoreboard.service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -9,10 +9,10 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import dev.sugaroflead.dropgame_scoreboard.data.NamePasshashCompositeKey;
-import dev.sugaroflead.dropgame_scoreboard.data.User;
-import dev.sugaroflead.dropgame_scoreboard.data.UserWithRank;
-import dev.sugaroflead.dropgame_scoreboard.repository.UserRepository;
+import party.niwatori.dropgame_scoreboard.data.NamePasshashCompositeKey;
+import party.niwatori.dropgame_scoreboard.data.User;
+import party.niwatori.dropgame_scoreboard.data.UserWithRank;
+import party.niwatori.dropgame_scoreboard.repository.UserRepository;
 
 @Service
 public class UserService {

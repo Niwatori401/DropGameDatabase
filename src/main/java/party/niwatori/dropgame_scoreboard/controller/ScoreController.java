@@ -1,4 +1,4 @@
-package dev.sugaroflead.dropgame_scoreboard.controller;
+package party.niwatori.dropgame_scoreboard.controller;
 
 import java.security.MessageDigest;
 import java.util.List;
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.sugaroflead.dropgame_scoreboard.data.Score;
-import dev.sugaroflead.dropgame_scoreboard.data.ScoreWithValidation;
-import dev.sugaroflead.dropgame_scoreboard.service.ScoreService;
-import dev.sugaroflead.dropgame_scoreboard.service.UserService;
+import party.niwatori.dropgame_scoreboard.data.Score;
+import party.niwatori.dropgame_scoreboard.data.ScoreWithValidation;
+import party.niwatori.dropgame_scoreboard.service.ScoreService;
+import party.niwatori.dropgame_scoreboard.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
