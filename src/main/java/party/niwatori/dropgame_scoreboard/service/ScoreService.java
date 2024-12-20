@@ -15,10 +15,12 @@ public class ScoreService {
         this.scoreRepository = scoreRepository;
     }
 
+    @Transactional
     public Score saveScore(Score score) {
         return scoreRepository.save(score);
     }
 
+    @Transactional
     public List<Score> getUserScores(String userName) {
         return this.scoreRepository.getAllScoresByUserName(userName);
     }

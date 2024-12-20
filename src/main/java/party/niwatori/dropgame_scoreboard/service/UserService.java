@@ -22,10 +22,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    @Transactional
     public User saveUser(User user) {
         return userRepository.save(user);
     }
 
+    @Transactional
     public Optional<User> getUserByUserNamePasshash(String username, String passhash) {
         NamePasshashCompositeKey npck = new NamePasshashCompositeKey();
         npck.setPassHash(passhash);
@@ -33,10 +35,12 @@ public class UserService {
         return userRepository.findById(npck);
     }
 
+    @Transactional
     public Boolean userNameExists(String username) {
         return this.userRepository.getUserName(username).isPresent();
     }
 
+    @Transactional
     public List<UserWithRank> getN_UsersStartingFrom_M(Integer n, Integer m) {
         List<Object[]> objectList = this.userRepository.getN_UsersStartingFrom_M(n, m);
         List<UserWithRank> userWithRanks = new ArrayList<>();
@@ -58,6 +62,7 @@ public class UserService {
         return userWithRanks;
     }
 
+    @Transactional
     public UserWithRank getUserWithRankByUsername(String userName) {
         List<Object[]> dataCollection = this.userRepository.getUserWithRankByUsername(userName);
         if (dataCollection == null || dataCollection.size() == 0)
@@ -79,6 +84,7 @@ public class UserService {
         return u;
     }
 
+    @Transactional
     public Integer getUserCount() {
         return this.userRepository.getUserCount();
     }
